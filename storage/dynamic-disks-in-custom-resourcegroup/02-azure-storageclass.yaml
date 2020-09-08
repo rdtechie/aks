@@ -1,0 +1,14 @@
+---
+# When permissions are being set correctly, we can create a new storage class.
+# This storage class will place dynamic disks in a separate resource group called 'aksstorage'
+# More info on parameters here: https://kubernetes.io/docs/concepts/storage/storage-classes/#azure-disk
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: managed-premium-aksstorage
+provisioner: kubernetes.io/azure-disk
+parameters:
+  skuname: Premium_LRS
+  kind: Managed
+  cachingMode: ReadOnly
+  resourceGroup: aksstorage
